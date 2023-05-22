@@ -25,6 +25,16 @@ func getDate(date time.Time) (filedate, titlename string) {
 	return
 }
 
+func createDailyContent(date string) string {
+	title := fmt.Sprintf("# Reunión y quehaceres %s\n", date)
+	dailytitle := fmt.Sprintf("\n## Daily\n")
+	questions := fmt.Sprintf("\n### Preguntas\n\n-[] \n-[] \n")
+	dailymatters := fmt.Sprintf("\n### Cuestiones tratadas\n\n- \n- \n")
+	projects := fmt.Sprintf("\n## Proyectos\n")
+	todo := fmt.Sprintf("\n### To-do\n\n- []\n- []\n")
+	return title + dailytitle + questions + dailymatters + projects + todo
+}
+
 func main() {
 
 	dailyNote := flag.Bool("daily", false, "creates a daily note type with the current date")
@@ -46,7 +56,7 @@ func main() {
 		filedate, titlename := getDate(time.Now())
 
 		filename = fmt.Sprintf("%s.md", filedate)
-		filecontent += "# " + titlename + "\n"
+		filecontent += createDailyContent(titlename)
 	} else {
 		filename = "README.md"
 		filecontent = "# Title\n"
