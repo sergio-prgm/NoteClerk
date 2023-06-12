@@ -26,3 +26,12 @@ Run `NoteClerk -h` to learn more about the different kinds of files that are cur
 ```sh
 go build main.go && ./main -daily
 ```
+### Cross Compile
+
+```sh
+GOOS=windows GOARCH=amd64 go build -o ./bin/win/NoteClerk-amd64.exe main.go
+```
+
+```sh
+GOOS=darwin GOARCH=amd64 go build -o ./bin/mac/Note-Clerk main.go
+```
